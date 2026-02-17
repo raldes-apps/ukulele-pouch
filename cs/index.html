@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ukulele Pouch</title>
+    <meta
+      name="description"
+      content="Aplikace se vším co na ukulele potřebuješ: import PDF zpěvníků a tabulatur, knihovna akordů, akordových progresí, stupnice, ladička (High‑G/Low‑G) a metronom. Funguje offline. Bez reklam."
+      data-i18n="metaDescription"
+      data-i18n-attr="content"
+    />
+    <meta name="theme-color" content="#F8F1E3" id="meta-theme-color" />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="canonical" href="" id="canonical-link" />
+    <link rel="icon" href="../assets/icon.png" id="favicon" />
+
+    <link rel="alternate" href="" hreflang="cs" id="hreflang-cs" />
+    <link rel="alternate" href="" hreflang="en" id="hreflang-en" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Ukulele Pouch" id="og-title" />
+    <meta
+      property="og:description"
+      content="Aplikace se vším co na ukulele potřebuješ: import PDF zpěvníků a tabulatur, knihovna akordů, akordových progresí, stupnice, ladička (High‑G/Low‑G) a metronom. Funguje offline. Bez reklam."
+      id="og-description"
+      data-i18n="metaDescription"
+      data-i18n-attr="content"
+    />
+    <meta property="og:image" content="../assets/feature-graphic-cz.png" id="og-image" />
+    <meta property="og:url" content="" id="og-url" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ukulele Pouch" id="twitter-title" />
+    <meta
+      name="twitter:description"
+      content="Aplikace se vším co na ukulele potřebuješ: import PDF zpěvníků a tabulatur, knihovna akordů, akordových progresí, stupnice, ladička (High‑G/Low‑G) a metronom. Funguje offline. Bez reklam."
+      id="twitter-description"
+    />
+    <meta name="twitter:image" content="../assets/feature-graphic-cz.png" id="twitter-image" />
+
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <script>
+      (function () {
+        try {
+          const KEY = "ukuleleTheme";
+          const saved = localStorage.getItem(KEY);
+          const theme = saved === "dark" || saved === "light" ? saved : "light";
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.classList.remove("theme-ready");
+        } catch (e) {
+          document.documentElement.dataset.theme = "light";
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <img
+            src="../assets/icon.png"
+            data-src-light="../assets/icon.png"
+            data-src-dark="../assets/icon-dark.png"
+            alt="Ukulele Pouch logo"
+            class="brand-logo"
+            width="64"
+            height="64"
+            data-i18n="logoAlt"
+            data-i18n-attr="alt"
+          />
+          <div>
+            <p class="eyebrow">Ukulele Pouch</p>
+            <p class="tagline" data-i18n="heroTagline">Warm & cozy ukulele toolkit</p>
+          </div>
+        </div>
+        <div class="header-controls">
+          <nav class="lang-switch" aria-label="Language">
+            <button type="button" class="lang-btn" data-lang="cs" aria-pressed="false">
+              CZ
+            </button>
+            <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">
+              EN
+            </button>
+          </nav>
+          <div class="theme-switch" role="group" aria-label="Theme">
+            <button
+              type="button"
+              class="theme-btn"
+              data-theme="light"
+              aria-pressed="false"
+              aria-label="Light theme"
+            >
+              <svg class="theme-icon" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
+                <path d="M450-810v-110h60v110h-60Zm0 770v-110h60v110h-60Zm360-410v-60h110v60H810Zm-770 0v-60h110v60H40Zm702-250-43-43 66-66 43 43-66 66ZM195-151l-43-43 66-66 43 43-66 66Zm570 0-66-66 43-43 66 66-43 43ZM218-700l-66-66 43-43 66 66-43 43Zm102.5 379.5Q255-386 255-480t65.5-159.5Q386-705 480-705t159.5 65.5Q705-574 705-480t-65.5 159.5Q574-255 480-255t-159.5-65.5ZM597-363q48-48 48-117t-48-117q-48-48-117-48t-117 48q-48 48-48 117t48 117q48 48 117 48t117-48ZM480-480Z" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              class="theme-btn"
+              data-theme="dark"
+              aria-pressed="false"
+              aria-label="Dark theme"
+            >
+              <svg class="theme-icon" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
+                <path d="M614-668 508-774l106-106 106 106-106 106Zm200 120-66-66 66-66 66 66-66 66ZM483-80q-84 0-157.5-32t-128-86.5Q143-253 111-326.5T79-484q0-146 93-257.5T409-880q-18 98 11 192.63 29 94.64 100 165.74 71 71.1 165.5 100.14Q780-392.45 879-410.47q-26 144.2-138 237.34Q629-80 483-80Zm0-60q100 0 182-57t132-145q-90-8-173-41.5T477.5-480Q414-543 381-625.5T340-797q-88 48-144.5 130.5T139-484q0 143.33 100.33 243.67Q339.67-140 483-140Zm-6-340Z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-content">
+            <h1 data-i18n="heroTitle">Ukulele Pouch</h1>
+            <p class="hero-subtitle" data-i18n="heroSubtitle">
+              All‑in‑one ukulele app: PDF songbook & tabs, chords, tuner, metronome, scales,
+              chord progressions.
+            </p>
+            <p class="hero-lead" data-i18n="heroLead">
+              Keep your PDF songbooks & tabs in one place, explore chords and practice with
+              built‑in tools. Designed for comfortable practicing, teaching, and casual playing.
+            </p>
+            <div class="hero-actions">
+              <a
+                class="cta-button"
+                href="https://play.google.com/store/apps/details?id=cz.raldes.ukulelepouch"
+                target="_blank"
+                rel="noopener"
+                data-i18n="primaryCta"
+              >
+                Get it on Google Play
+              </a>
+            </div>
+            <div class="hero-badges">
+              <span class="pill" data-i18n="badgeOffline">Works offline</span>
+              <span class="pill" data-i18n="badgeNoAds">No ads</span>
+              <span class="pill" data-i18n="badgeNoSubs">No subscriptions</span>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <img
+              src="../assets/qr-google-play.png"
+              data-src-light="../assets/qr-google-play.png"
+              data-src-dark="../assets/qr-google-play-dark.png"
+              alt="QR code to Google Play"
+              class="hero-qr"
+              width="280"
+              height="280"
+              data-i18n="qrAlt"
+              data-i18n-attr="alt"
+            />
+            <p class="qr-caption" data-i18n="qrCaption">Scan to open Google Play</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section features" id="features">
+        <div class="container">
+          <h2 data-i18n="featuresTitle">What you get</h2>
+          <div class="cards-grid">
+            <article class="card">
+              <h3 data-i18n="feature1Title">PDF Songbook & Tabs</h3>
+              <p data-i18n="feature1Desc">
+                Import your own PDFs, organize them into categories, and search instantly.
+              </p>
+            </article>
+            <article class="card">
+              <h3 data-i18n="feature2Title">Chord Library</h3>
+              <p data-i18n="feature2Desc">
+                Interactive chord diagrams with multiple fingerings and playback.
+              </p>
+            </article>
+            <article class="card">
+              <h3 data-i18n="feature3Title">Chord Progressions</h3>
+              <p data-i18n="feature3Desc">
+                Browse moods and genres, transpose to any key, and play the full progression.
+              </p>
+            </article>
+            <article class="card">
+              <h3 data-i18n="feature4Title">Scales</h3>
+              <p data-i18n="feature4Desc">
+                See scale tones on the fretboard, diatonic chords, and play the scale.
+              </p>
+            </article>
+            <article class="card">
+              <h3 data-i18n="feature5Title">Tuner & Metronome</h3>
+              <p data-i18n="feature5Desc">
+                Accurate tuner (High‑G / Low‑G) and a flexible metronome with Tap Tempo.
+              </p>
+            </article>
+            <article class="card">
+              <h3 data-i18n="feature6Title">Backup & Transfer</h3>
+              <p data-i18n="feature6Desc">
+                Export and import your library for easy migration to a new device.
+              </p>
+            </article>
+            <article class="card">
+              <h3 data-i18n="feature7Title">Floating Tools Button</h3>
+              <p data-i18n="feature7Desc">
+                Instant access to all tools anywhere in the app. Optional (can be disabled) and freely movable on the screen.
+              </p>
+            </article>
+            <article class="card">
+              <h3 data-i18n="feature8Title">Design & Comfort</h3>
+              <p data-i18n="feature8Desc">
+                Warm cozy colors, light & dark mode, landscape support. Clean UI, fully offline. No ads or tracking.
+              </p>
+            </article>
+            <article class="card">
+              <h3 data-i18n="feature9Title">Backup & Transfer</h3>
+              <p data-i18n="feature9Desc">
+                Export and import your entire library: songs, categories, favorite chords, and settings. Easy migration to a new device.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section screenshots" id="screenshots">
+        <div class="container">
+          <div class="section-header">
+            <h2 data-i18n="screenshotsTitle">Screenshots</h2>
+            <div class="device-tabs" role="tablist" aria-label="Device">
+              <button class="device-tab" data-device="phone" role="tab" aria-selected="true">
+                <span data-i18n="devicePhone">Phone</span>
+              </button>
+              <button class="device-tab" data-device="tablet" role="tab" aria-selected="false">
+                <span data-i18n="deviceTablet">Tablet</span>
+              </button>
+            </div>
+          </div>
+          <div class="device-section is-active" data-device="phone">
+            <h3 class="device-title" data-i18n="devicePhone">Phone</h3>
+            <div class="carousel">
+              <button class="carousel-btn" type="button" data-carousel-target="phone" data-direction="prev" aria-label="Previous">
+                ‹
+              </button>
+              <div class="screenshot-grid" id="screenshot-grid-phone" tabindex="0"></div>
+              <button class="carousel-btn" type="button" data-carousel-target="phone" data-direction="next" aria-label="Next">
+                ›
+              </button>
+            </div>
+            <div class="carousel-dots" data-dots-for="phone" aria-label="Carousel position"></div>
+          </div>
+          <div class="device-section" data-device="tablet">
+            <h3 class="device-title" data-i18n="deviceTablet">Tablet</h3>
+            <div class="carousel">
+              <button class="carousel-btn" type="button" data-carousel-target="tablet" data-direction="prev" aria-label="Previous">
+                ‹
+              </button>
+              <div class="screenshot-grid" id="screenshot-grid-tablet" tabindex="0"></div>
+              <button class="carousel-btn" type="button" data-carousel-target="tablet" data-direction="next" aria-label="Next">
+                ›
+              </button>
+            </div>
+            <div class="carousel-dots" data-dots-for="tablet" aria-label="Carousel position"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section faq" id="faq">
+        <div class="container">
+          <h2 data-i18n="faqTitle">FAQ</h2>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary data-i18n="faq1Q">Does Ukulele Pouch work without internet?</summary>
+              <p data-i18n="faq1A">
+                Yes. The whole app works offline. You only need internet to download and update the app (and optionally to transfer files between devices).
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary data-i18n="faq2Q">How does the tuner work, and why does it need microphone access?</summary>
+              <p data-i18n="faq2A">
+                First, allow microphone access — it’s used only to detect the note you’re playing. Then just pluck the strings: the app automatically detects which string is sounding and how well it’s tuned. You can also manually pick a specific string or tuning anytime.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary data-i18n="faq3Q">How does chord detection on the interactive fretboard work?</summary>
+              <p data-i18n="faq3A">
+                You simply tap which strings are open and which are fretted at specific positions. The app then automatically finds chord names that match the fingering.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary data-i18n="faq4Q">What can the app play back?</summary>
+              <p data-i18n="faq4A">
+                You can play back: chord fingerings, any combination on the interactive fretboard, scale notes and diatonic chords, and chord progressions in the selected key.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary data-i18n="faq5Q">How do I back up my data or move it to a new phone?</summary>
+              <p data-i18n="faq5A">
+                In Settings, use Export and choose what you want to include. The app creates a file—copy it to your new phone, then open Settings and use Import to load it.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary data-i18n="faq6Q">What can I customize in the app?</summary>
+              <p data-i18n="faq6A">
+                For example: the floating tools button, showing the current note while tuning, automatic PDF color inversion, theme (light/dark), language, and the metronome sound.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary data-i18n="faq7Q">How do I report a problem or contact support?</summary>
+              <p data-i18n="faq7A">
+                In Settings, scroll down to Contact support. It opens your email app with a pre-filled template—just add details and send it.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p data-i18n="footerText">
+          © 2026 Ukulele Pouch.
+        </p>
+        <div class="footer-links">
+          <a href="https://play.google.com/store/apps/details?id=cz.raldes.ukulelepouch" target="_blank" rel="noopener" data-i18n="footerPlay">Google Play</a>
+          <a href="https://albardo.github.io/ukulele-pouch-legal/privacy-policy" target="_blank" rel="noopener" data-i18n="footerPrivacy">Privacy policy</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+      <button class="lightbox-nav lightbox-prev" type="button" aria-label="Previous screenshot">‹</button>
+      <button class="lightbox-nav lightbox-next" type="button" aria-label="Next screenshot">›</button>
+      <div class="lightbox-content" role="dialog" aria-modal="true">
+        <button class="lightbox-close" type="button" aria-label="Close">×</button>
+        <img src="" alt="" id="lightbox-image" />
+        <p id="lightbox-caption"></p>
+      </div>
+    </div>
+
+    <script id="json-ld" type="application/ld+json"></script>
+    <script src="../assets/screenshots.js" defer></script>
+    <script src="../main.js" defer></script>
+  </body>
+</html>

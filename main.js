@@ -6,6 +6,29 @@ const MOBILE_MEDIA = window.matchMedia("(max-width: 899px)");
 const COMPACT_SCREENSHOTS = true;
 const THEME_KEY = "ukuleleTheme";
 const supportedThemes = ["light", "dark"];
+const ROOT_PATH = getRootPath();
+const IS_FILE_PROTOCOL = window.location.protocol === "file:";
+
+function getRootPath() {
+  const path = window.location.pathname;
+  if (path.includes("/ukulele-pouch/")) {
+    return "/ukulele-pouch/";
+  }
+  if (path.endsWith("/index.html")) {
+    return path.replace(/index\.html$/, "");
+  }
+  if (path.endsWith("/")) {
+    return path;
+  }
+  return path.replace(/[^/]+$/, "");
+}
+
+function toAbsoluteUrl(path) {
+  if (IS_FILE_PROTOCOL) {
+    return new URL(path, window.location.href).toString();
+  }
+  return `${window.location.origin}${path}`;
+}
 
 const i18n = {
   cs: {
@@ -186,15 +209,13 @@ let lightboxDevice = null;
 const supportedLangs = ["cs", "en"];
 
 function detectLanguage() {
-  const params = new URLSearchParams(window.location.search);
-  const urlLang = params.get("lang");
-  if (supportedLangs.includes(urlLang)) {
-    return urlLang;
-  }
+  const path = window.location.pathname;
+  if (path.includes("/cs/")) return "cs";
+  if (path.includes("/en/")) return "en";
+
   const storedLang = localStorage.getItem("ukuleleLang");
-  if (supportedLangs.includes(storedLang)) {
-    return storedLang;
-  }
+  if (supportedLangs.includes(storedLang)) return storedLang;
+
   const preferred = navigator.languages?.[0] || navigator.language || "en";
   if (preferred.toLowerCase().startsWith("cs") || preferred.toLowerCase().startsWith("sk")) {
     return "cs";
@@ -238,7 +259,9 @@ function updateThemeAssets(theme) {
   });
 
   if (faviconEl) {
-    faviconEl.href = theme === "dark" ? "assets/icon-dark.png" : "assets/icon.png";
+    faviconEl.href = theme === "dark"
+      ? `${ROOT_PATH}assets/icon-dark.png`
+      : `${ROOT_PATH}assets/icon.png`;
   }
 }
 
@@ -248,7 +271,7 @@ function updateThemeMeta(theme) {
 }
 
 function screenshotsBase(device) {
-  return `assets/screenshots-${device}${currentTheme === "dark" ? "-dark" : ""}`;
+  return `${ROOT_PATH}assets/screenshots-${device}${currentTheme === "dark" ? "-dark" : ""}`;
 }
 
 function screenshotSrc(device, file) {
@@ -259,10 +282,11 @@ function setLang(lang) {
   currentLang = lang;
   localStorage.setItem("ukuleleLang", lang);
 
-  const params = new URLSearchParams(window.location.search);
-  params.set("lang", lang);
-  const newUrl = `${window.location.pathname}?${params.toString()}`;
-  window.history.replaceState({}, "", newUrl);
+  const desiredPath = `${ROOT_PATH}${lang}/`;
+  if (!window.location.pathname.startsWith(desiredPath)) {
+    window.location.href = IS_FILE_PROTOCOL ? `${ROOT_PATH}${lang}/index.html` : desiredPath;
+    return;
+  }
 
   document.documentElement.lang = lang;
   document.title = i18n[lang].metaTitle;
@@ -281,28 +305,22 @@ function setCompactMode(enabled) {
 }
 
 function updateMeta(lang) {
-  const baseUrl = `${window.location.origin}${window.location.pathname}`;
-  const canonical = `${baseUrl}?lang=${lang}`;
-  const otherLang = lang === "cs" ? "en" : "cs";
+  const canonical = toAbsoluteUrl(`${ROOT_PATH}${lang}/`);
+
   document.getElementById("canonical-link").href = canonical;
-  document.getElementById("hreflang-cs").href = `${baseUrl}?lang=cs`;
-  document.getElementById("hreflang-en").href = `${baseUrl}?lang=en`;
+  document.getElementById("hreflang-cs").href = toAbsoluteUrl(`${ROOT_PATH}cs/`);
+  document.getElementById("hreflang-en").href = toAbsoluteUrl(`${ROOT_PATH}en/`);
+
   document.getElementById("og-url").setAttribute("content", canonical);
   document.getElementById("og-title").setAttribute("content", i18n[lang].metaTitle);
-  document
-    .getElementById("og-description")
-    .setAttribute("content", i18n[lang].metaDescription);
+  document.getElementById("og-description").setAttribute("content", i18n[lang].metaDescription);
+
   document.getElementById("twitter-title").setAttribute("content", i18n[lang].metaTitle);
   document
     .getElementById("twitter-description")
     .setAttribute("content", i18n[lang].metaDescription);
 
-  document.getElementById("hreflang-cs").setAttribute("hreflang", "cs");
-  document.getElementById("hreflang-en").setAttribute("hreflang", "en");
-
-  document
-    .querySelectorAll("[data-i18n-attr]")
-    .forEach((element) => applyI18nAttr(element, lang));
+  document.querySelectorAll("[data-i18n-attr]").forEach((element) => applyI18nAttr(element, lang));
 
   document.querySelectorAll("a[href*='play.google.com']").forEach((link) => {
     link.setAttribute("href", PLAY_URL);
@@ -329,9 +347,10 @@ function updateLangButtons(lang) {
 }
 
 function updateSocialImages(lang) {
-  const baseUrl = new URL(".", window.location.href);
-  const graphic = lang === "cs" ? "assets/feature-graphic-cz.png" : "assets/feature-graphic-en.png";
-  const absGraphic = new URL(graphic, baseUrl).toString();
+  const graphic = lang === "cs"
+    ? `${ROOT_PATH}assets/feature-graphic-cz.png`
+    : `${ROOT_PATH}assets/feature-graphic-en.png`;
+  const absGraphic = toAbsoluteUrl(graphic);
   document.getElementById("og-image").setAttribute("content", absGraphic);
   document.getElementById("twitter-image").setAttribute("content", absGraphic);
 }
@@ -348,7 +367,7 @@ function applyI18nAttr(element, lang) {
 
 async function loadScreenshots() {
   try {
-    const response = await fetch("assets/screenshots.json", { cache: "no-cache" });
+    const response = await fetch(`${ROOT_PATH}assets/screenshots.json`, { cache: "no-cache" });
     if (!response.ok) {
       throw new Error("Screenshots JSON not found");
     }
@@ -652,13 +671,14 @@ function handleScreenshotClick(event) {
 }
 
 function updateStructuredData() {
-  const baseUrl = new URL(".", window.location.href);
-  const pageUrl = new URL(window.location.href);
-  pageUrl.searchParams.set("lang", currentLang);
+  const baseUrl = new URL(toAbsoluteUrl(ROOT_PATH));
+  const pageUrl = new URL(toAbsoluteUrl(`${ROOT_PATH}${currentLang}/`));
   const screenshots = screenshotsData
     .filter((item) => item.lang === currentLang)
     .map((item) => new URL(screenshotSrc(item.device, item.file), baseUrl).toString());
-  const iconPath = currentTheme === "dark" ? "assets/icon-dark.png" : "assets/icon.png";
+  const iconPath = currentTheme === "dark"
+    ? `${ROOT_PATH}assets/icon-dark.png`
+    : `${ROOT_PATH}assets/icon.png`;
   const data = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
