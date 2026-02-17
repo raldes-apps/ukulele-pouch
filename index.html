@@ -10,6 +10,12 @@
         try {
           function getRootPath() {
             var path = location.pathname;
+            if (/\/(cs|en)\/index\.html$/.test(path)) {
+              return path.replace(/(cs|en)\/index\.html$/, "");
+            }
+            if (/\/(cs|en)\/$/.test(path)) {
+              return path.replace(/(cs|en)\/$/, "");
+            }
             if (path.endsWith("/index.html")) {
               return path.replace(/index\.html$/, "");
             }

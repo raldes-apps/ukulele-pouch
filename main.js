@@ -14,6 +14,12 @@ function getRootPath() {
   if (path.includes("/ukulele-pouch/")) {
     return "/ukulele-pouch/";
   }
+  if (/\/(cs|en)\/index\.html$/.test(path)) {
+    return path.replace(/(cs|en)\/index\.html$/, "");
+  }
+  if (/\/(cs|en)\/$/.test(path)) {
+    return path.replace(/(cs|en)\/$/, "");
+  }
   if (path.endsWith("/index.html")) {
     return path.replace(/index\.html$/, "");
   }
