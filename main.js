@@ -4,6 +4,8 @@ const APP_PRICE = null;
 const APP_CURRENCY = "CZK";
 const MOBILE_MEDIA = window.matchMedia("(max-width: 899px)");
 const COMPACT_SCREENSHOTS = true;
+const THEME_KEY = "ukuleleTheme";
+const supportedThemes = ["light", "dark"];
 
 const i18n = {
   cs: {
@@ -153,6 +155,7 @@ const i18n = {
 };
 
 const langButtons = document.querySelectorAll(".lang-btn");
+const themeButtons = document.querySelectorAll(".theme-btn");
 const deviceTabs = document.querySelectorAll(".device-tab");
 const deviceSections = document.querySelectorAll(".device-section");
 const deviceTabsWrapper = document.querySelector(".device-tabs");
@@ -168,9 +171,12 @@ const lightboxClose = document.querySelector(".lightbox-close");
 const lightboxPrev = document.querySelector(".lightbox-prev");
 const lightboxNext = document.querySelector(".lightbox-next");
 const screenshotsSection = document.querySelector(".screenshots");
+const faviconEl = document.getElementById("favicon");
+const metaThemeColorEl = document.getElementById("meta-theme-color");
 
 let currentLang = "en";
 let currentDevice = "phone";
+let currentTheme = "light";
 let screenshotsData = [];
 let lastFocusedCard = null;
 let lightboxItems = [];
@@ -194,6 +200,59 @@ function detectLanguage() {
     return "cs";
   }
   return "en";
+}
+
+function detectTheme() {
+  const stored = localStorage.getItem(THEME_KEY);
+  return stored === "dark" ? "dark" : "light";
+}
+
+function setTheme(theme, { persist = true } = {}) {
+  const next = supportedThemes.includes(theme) ? theme : "light";
+  currentTheme = next;
+  document.documentElement.dataset.theme = next;
+
+  if (persist) {
+    localStorage.setItem(THEME_KEY, next);
+  }
+
+  updateThemeButtons(next);
+  updateThemeAssets(next);
+  updateThemeMeta(next);
+
+  if (screenshotsData.length) {
+    renderScreenshots();
+    updateStructuredData();
+  }
+}
+
+function updateThemeButtons(theme) {
+  themeButtons.forEach((button) => {
+    button.setAttribute("aria-pressed", button.dataset.theme === theme ? "true" : "false");
+  });
+}
+
+function updateThemeAssets(theme) {
+  document.querySelectorAll("img[data-src-light][data-src-dark]").forEach((img) => {
+    img.src = theme === "dark" ? img.dataset.srcDark : img.dataset.srcLight;
+  });
+
+  if (faviconEl) {
+    faviconEl.href = theme === "dark" ? "assets/icon-dark.png" : "assets/icon.png";
+  }
+}
+
+function updateThemeMeta(theme) {
+  if (!metaThemeColorEl) return;
+  metaThemeColorEl.setAttribute("content", theme === "dark" ? "#3A3630" : "#F8F1E3");
+}
+
+function screenshotsBase(device) {
+  return `assets/screenshots-${device}${currentTheme === "dark" ? "-dark" : ""}`;
+}
+
+function screenshotSrc(device, file) {
+  return `${screenshotsBase(device)}/${file}`;
 }
 
 function setLang(lang) {
@@ -323,11 +382,11 @@ function renderScreenshotsForDevice(device, container) {
     button.type = "button";
     button.className = "screenshot-card";
     button.setAttribute("aria-label", item.caption);
-    button.dataset.fullSrc = `assets/screenshots-${item.device}/${item.file}`;
+    button.dataset.fullSrc = screenshotSrc(item.device, item.file);
     button.dataset.caption = item.caption;
     button.innerHTML = `
       <div class="screenshot-image">
-        <img src="assets/screenshots-${item.device}/${item.file}" alt="${item.caption}" loading="lazy" />
+        <img src="${screenshotSrc(item.device, item.file)}" alt="${item.caption}" loading="lazy" />
       </div>
       <p>${item.caption}</p>
     `;
@@ -531,7 +590,7 @@ function openLightbox(fullSrc, caption, trigger) {
   lightboxItems = screenshotsData
     .filter((item) => item.lang === currentLang && item.device === lightboxDevice)
     .map((item) => ({
-      src: `assets/screenshots-${item.device}/${item.file}`,
+      src: screenshotSrc(item.device, item.file),
       caption: item.caption,
     }));
   lightboxIndex = lightboxItems.findIndex((item) => item.src === fullSrc);
@@ -598,9 +657,8 @@ function updateStructuredData() {
   pageUrl.searchParams.set("lang", currentLang);
   const screenshots = screenshotsData
     .filter((item) => item.lang === currentLang)
-    .map((item) =>
-      new URL(`assets/screenshots-${item.device}/${item.file}`, baseUrl).toString()
-    );
+    .map((item) => new URL(screenshotSrc(item.device, item.file), baseUrl).toString());
+  const iconPath = currentTheme === "dark" ? "assets/icon-dark.png" : "assets/icon.png";
   const data = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -611,7 +669,7 @@ function updateStructuredData() {
     downloadUrl: PLAY_URL,
     installUrl: PLAY_URL,
     sameAs: PLAY_URL,
-    image: new URL("assets/icon.png", baseUrl).toString(),
+    image: new URL(iconPath, baseUrl).toString(),
     screenshot: screenshots,
   };
 
@@ -628,6 +686,10 @@ function updateStructuredData() {
 
 langButtons.forEach((button) => {
   button.addEventListener("click", () => setLang(button.dataset.lang));
+});
+
+themeButtons.forEach((button) => {
+  button.addEventListener("click", () => setTheme(button.dataset.theme));
 });
 
 deviceTabs.forEach((button) => {
@@ -681,7 +743,12 @@ document.addEventListener("keydown", (event) => {
 
 (async function init() {
   await loadScreenshots();
+  currentTheme = detectTheme();
+  setTheme(currentTheme, { persist: false });
   currentLang = detectLanguage();
   setLang(currentLang);
   setCompactMode(COMPACT_SCREENSHOTS);
+  requestAnimationFrame(() => {
+    document.documentElement.classList.add("theme-ready");
+  });
 })();

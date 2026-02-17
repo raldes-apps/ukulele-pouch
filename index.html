@@ -3,18 +3,18 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ukulele Pouch</title>
+    <title>Ukulele Pouch</title>
     <meta
       name="description"
       content="All‑in‑one ukulele app: PDF songbook & tabs viewer, chord library, progressions, scales, tuner (High‑G/Low‑G) and metronome. Works offline. No ads."
       data-i18n="metaDescription"
       data-i18n-attr="content"
     />
-    <meta name="theme-color" content="#F8F1E3" />
+    <meta name="theme-color" content="#F8F1E3" id="meta-theme-color" />
     <meta name="robots" content="index, follow" />
 
     <link rel="canonical" href="" id="canonical-link" />
-    <link rel="icon" href="assets/icon.png" />
+    <link rel="icon" href="assets/icon.png" id="favicon" />
 
     <link rel="alternate" href="" hreflang="cs" id="hreflang-cs" />
     <link rel="alternate" href="" hreflang="en" id="hreflang-en" />
@@ -37,6 +37,19 @@
     <meta name="twitter:image" content="assets/feature-graphic-en.png" id="twitter-image" />
 
     <link rel="manifest" href="manifest.webmanifest" />
+    <script>
+      (function () {
+        try {
+          const KEY = "ukuleleTheme";
+          const saved = localStorage.getItem(KEY);
+          const theme = saved === "dark" || saved === "light" ? saved : "light";
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.classList.remove("theme-ready");
+        } catch (e) {
+          document.documentElement.dataset.theme = "light";
+        }
+      })();
+    </script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -45,6 +58,8 @@
         <div class="brand">
           <img
             src="assets/icon.png"
+            data-src-light="assets/icon.png"
+            data-src-dark="assets/icon-dark.png"
             alt="Ukulele Pouch logo"
             class="brand-logo"
             width="64"
@@ -57,14 +72,40 @@
             <p class="tagline" data-i18n="heroTagline">Warm & cozy ukulele toolkit</p>
           </div>
         </div>
-        <nav class="lang-switch" aria-label="Language">
-          <button type="button" class="lang-btn" data-lang="cs" aria-pressed="false">
-            CZ
-          </button>
-          <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">
-            EN
-          </button>
-        </nav>
+        <div class="header-controls">
+          <nav class="lang-switch" aria-label="Language">
+            <button type="button" class="lang-btn" data-lang="cs" aria-pressed="false">
+              CZ
+            </button>
+            <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">
+              EN
+            </button>
+          </nav>
+          <div class="theme-switch" role="group" aria-label="Theme">
+            <button
+              type="button"
+              class="theme-btn"
+              data-theme="light"
+              aria-pressed="false"
+              aria-label="Light theme"
+            >
+              <svg class="theme-icon" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
+                <path d="M450-810v-110h60v110h-60Zm0 770v-110h60v110h-60Zm360-410v-60h110v60H810Zm-770 0v-60h110v60H40Zm702-250-43-43 66-66 43 43-66 66ZM195-151l-43-43 66-66 43 43-66 66Zm570 0-66-66 43-43 66 66-43 43ZM218-700l-66-66 43-43 66 66-43 43Zm102.5 379.5Q255-386 255-480t65.5-159.5Q386-705 480-705t159.5 65.5Q705-574 705-480t-65.5 159.5Q574-255 480-255t-159.5-65.5ZM597-363q48-48 48-117t-48-117q-48-48-117-48t-117 48q-48 48-48 117t48 117q48 48 117 48t117-48ZM480-480Z" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              class="theme-btn"
+              data-theme="dark"
+              aria-pressed="false"
+              aria-label="Dark theme"
+            >
+              <svg class="theme-icon" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
+                <path d="M614-668 508-774l106-106 106 106-106 106Zm200 120-66-66 66-66 66 66-66 66ZM483-80q-84 0-157.5-32t-128-86.5Q143-253 111-326.5T79-484q0-146 93-257.5T409-880q-18 98 11 192.63 29 94.64 100 165.74 71 71.1 165.5 100.14Q780-392.45 879-410.47q-26 144.2-138 237.34Q629-80 483-80Zm0-60q100 0 182-57t132-145q-90-8-173-41.5T477.5-480Q414-543 381-625.5T340-797q-88 48-144.5 130.5T139-484q0 143.33 100.33 243.67Q339.67-140 483-140Zm-6-340Z" />
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
     </header>
 
@@ -101,6 +142,8 @@
           <div class="hero-visual">
             <img
               src="assets/qr-google-play.png"
+              data-src-light="assets/qr-google-play.png"
+              data-src-dark="assets/qr-google-play-dark.png"
               alt="QR code to Google Play"
               class="hero-qr"
               width="280"
