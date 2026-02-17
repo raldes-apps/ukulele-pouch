@@ -56,7 +56,7 @@ const i18n = {
     badgeNoSubs: "Bez předplatného",
     featuresTitle: "Co umí",
     feature1Title: "PDF zpěvník a taby",
-    feature1Desc: "Importování vlastních PDF, třidění do kategorií a rychlé vyhledávání..",
+    feature1Desc: "Importování vlastních PDF, třídění do kategorií a rychlé vyhledávání.",
     feature2Title: "Akordy",
     feature2Desc:
       "Najdi skoro každý akord s několika prstoklady. Přehraj ho, ulož do oblíbených a urči název z hmatníku.",
