@@ -1,0 +1,268 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Offline ukulele app: no ads, no subscriptions | Ukulele Pouch</title>
+    <meta name="description"
+        content="Everyday ukulele toolkit: PDF songbooks and tabs, chords, progressions, scales, tuner and metronome - offline, no ads, no subscriptions." />
+    <meta name="theme-color" content="#F8F1E3" id="meta-theme-color" />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="canonical" href="https://raldes-apps.github.io/ukulele-pouch/en/offline-no-ads/" />
+    <link rel="icon" href="../../assets/icon.png" id="favicon" />
+
+    <link rel="alternate" href="https://raldes-apps.github.io/ukulele-pouch/cs/offline-no-ads/" hreflang="cs" />
+    <link rel="alternate" href="https://raldes-apps.github.io/ukulele-pouch/en/offline-no-ads/" hreflang="en" />
+    <link rel="alternate" href="https://raldes-apps.github.io/ukulele-pouch/en/offline-no-ads/" hreflang="x-default" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="cs_CZ" />
+    <meta property="og:title" content="Offline ukulele app: no ads, no subscriptions | Ukulele Pouch" />
+    <meta property="og:description"
+        content="Everyday ukulele toolkit: PDF songbooks and tabs, chords, progressions, scales, tuner and metronome - offline, no ads, no subscriptions." />
+    <meta property="og:image" content="https://raldes-apps.github.io/ukulele-pouch/assets/feature-graphic-en.png" />
+    <meta property="og:image:width" content="1536" />
+    <meta property="og:image:height" content="1024" />
+    <meta property="og:image:alt" content="Ukulele Pouch - offline with no ads" />
+    <meta property="og:url" content="https://raldes-apps.github.io/ukulele-pouch/en/offline-no-ads/" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Offline ukulele app: no ads, no subscriptions | Ukulele Pouch" />
+    <meta name="twitter:description"
+        content="Everyday ukulele toolkit: PDF songbooks and tabs, chords, progressions, scales, tuner and metronome - offline, no ads, no subscriptions." />
+    <meta name="twitter:url" content="https://raldes-apps.github.io/ukulele-pouch/en/offline-no-ads/" />
+    <meta name="twitter:image" content="https://raldes-apps.github.io/ukulele-pouch/assets/feature-graphic-en.png" />
+    <meta name="twitter:image:alt" content="Ukulele Pouch - offline with no ads" />
+
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <script>
+        (function () {
+            try {
+                const KEY = "ukuleleTheme";
+                const saved = localStorage.getItem(KEY);
+                const theme = saved === "dark" || saved === "light" ? saved : "light";
+                document.documentElement.dataset.theme = theme;
+                document.documentElement.classList.remove("theme-ready");
+            } catch (e) {
+                document.documentElement.dataset.theme = "light";
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="../../style.css" />
+</head>
+
+<body data-static-page="true">
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <img src="../../assets/icon.png" data-src-light="../../assets/icon.png"
+                    data-src-dark="../../assets/icon-dark.png" alt="Ukulele Pouch logo" class="brand-logo" width="64"
+                    height="64" />
+                <div>
+                    <p class="eyebrow">Ukulele Pouch</p>
+                    <p class="tagline">Warm and cozy ukulele toolkit</p>
+                </div>
+            </div>
+            <div class="header-controls">
+                <nav class="lang-switch" aria-label="Language">
+                    <button type="button" class="lang-btn" data-lang="cs" data-lang-url="../../cs/offline-no-ads/"
+                        aria-pressed="false">
+                        CZ
+                    </button>
+                    <button type="button" class="lang-btn" data-lang="en" data-lang-url="../../en/offline-no-ads/"
+                        aria-pressed="true">
+                        EN
+                    </button>
+                </nav>
+                <div class="theme-switch" role="group" aria-label="Theme">
+                    <button type="button" class="theme-btn" data-theme="light" aria-pressed="false"
+                        aria-label="Light theme">
+                        <svg class="theme-icon" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
+                            <path
+                                d="M450-810v-110h60v110h-60Zm0 770v-110h60v110h-60Zm360-410v-60h110v60H810Zm-770 0v-60h110v60H40Zm702-250-43-43 66-66 43 43-66 66ZM195-151l-43-43 66-66 43 43-66 66Zm570 0-66-66 43-43 66 66-43 43ZM218-700l-66-66 43-43 66 66-43 43Zm102.5 379.5Q255-386 255-480t65.5-159.5Q386-705 480-705t159.5 65.5Q705-574 705-480t-65.5 159.5Q574-255 480-255t-159.5-65.5ZM597-363q48-48 48-117t-48-117q-48-48-117-48t-117 48q-48 48-48 117t48 117q48 48 117 48t117-48ZM480-480Z" />
+                        </svg>
+                    </button>
+                    <button type="button" class="theme-btn" data-theme="dark" aria-pressed="false"
+                        aria-label="Dark theme">
+                        <svg class="theme-icon" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
+                            <path
+                                d="M614-668 508-774l106-106 106 106-106 106Zm200 120-66-66 66-66 66 66-66 66ZM483-80q-84 0-157.5-32t-128-86.5Q143-253 111-326.5T79-484q0-146 93-257.5T409-880q-18 98 11 192.63 29 94.64 100 165.74 71 71.1 165.5 100.14Q780-392.45 879-410.47q-26 144.2-138 237.34Q629-80 483-80Zm0-60q100 0 182-57t132-145q-90-8-173-41.5T477.5-480Q414-543 381-625.5T340-797q-88 48-144.5 130.5T139-484q0 143.33 100.33 243.67Q339.67-140 483-140Zm-6-340Z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <h1>Offline ukulele app with no ads</h1>
+                    <p class="hero-subtitle">
+                        Ukulele Pouch is built for everyday playing: a PDF reader, chord library, progressions, scales,
+                        tuner, and metronome - and it can run fully offline after your content is imported.
+                    </p>
+                    <p class="hero-lead">
+                        No ads means fewer distractions during practice. No subscriptions means no monthly fees.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="cta-button"
+                            href="https://play.google.com/store/apps/details?id=cz.raldes.ukulelepouch" target="_blank"
+                            rel="noopener">
+                            Get it on Google Play
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <img src="../../assets/qr-google-play.png" data-src-light="../../assets/qr-google-play.png"
+                        data-src-dark="../../assets/qr-google-play-dark.png" alt="QR code to Google Play" class="hero-qr"
+                        width="280" height="280" />
+                    <p class="qr-caption">Scan to open Google Play</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section content-split">
+            <div class="container split-grid">
+                <div class="split-main">
+                    <section class="section">
+                        <div class="container">
+                            <h2>Key benefits</h2>
+                            <ul>
+                                <li>No ads for uninterrupted practice</li>
+                                <li>No subscriptions or monthly fees</li>
+                                <li>Offline features after content import</li>
+                                <li>PDFs, chords, progressions, scales, tuner, and metronome offline</li>
+                                <li>Great for travel and low-signal places</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section class="section">
+                        <div class="container">
+                            <h2>Who it is for / when it helps</h2>
+                            <ul>
+                                <li>When you want a focused practice environment without interruptions</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section class="section">
+                        <div class="container">
+                            <h2>Tips</h2>
+                            <ul>
+                                <li>Import your PDFs before traveling and confirm they appear in the library</li>
+                                <li>Combine progressions and metronome for efficient drills</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section class="section faq" id="faq">
+                        <div class="container">
+                            <h2>FAQ</h2>
+                            <div class="faq-list">
+                                <details class="faq-item">
+                                    <summary>What works offline?</summary>
+                                    <p>Everything.</p>
+                                </details>
+                                <details class="faq-item">
+                                    <summary>Why does no ads matter for practice?</summary>
+                                    <p>Ads break focus. Practice benefits from a clean, uninterrupted workflow.</p>
+                                </details>
+                                <details class="faq-item">
+                                    <summary>Is the app subscription-based?</summary>
+                                    <p>No. The app has no subscriptions.</p>
+                                </details>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+
+                <aside class="split-aside"></aside>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>More helpful pages</h2>
+                <div class="cards-grid">
+                    <article class="card link-card"><a class="cta-link" href="../pdf-songbook/">PDF songbook and tabs</a></article>
+                    <article class="card link-card"><a class="cta-link" href="../ukulele-chords/">Ukulele chords</a></article>
+                    <article class="card link-card"><a class="cta-link" href="../chord-progressions/">Chord progressions</a></article>
+                    <article class="card link-card"><a class="cta-link" href="../ukulele-scales/">Ukulele scales</a></article>
+                    <article class="card link-card"><a class="cta-link" href="../ukulele-tuner/">Ukulele tuner</a></article>
+                    <article class="card link-card"><a class="cta-link" href="../metronome-tap-tempo/">Metronome and Tap Tempo</a></article>
+                    <article class="card link-card"><a class="cta-link" href="../fretboard-chord-finder/">Fretboard chord identification</a></article>
+                    <article class="card link-card"><a class="cta-link" href="../floating-tools-button/">Floating tools button</a></article>
+                    <article class="card link-card"><a class="cta-link" href="../backup-transfer/">Backup and transfer</a></article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>© 2026 Ukulele Pouch.</p>
+            <div class="footer-links">
+                <a href="https://play.google.com/store/apps/details?id=cz.raldes.ukulelepouch" target="_blank"
+                    rel="noopener">Google Play</a>
+                <a href="https://albardo.github.io/ukulele-pouch-legal/privacy-policy" target="_blank" rel="noopener">Privacy
+                    policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+        <button class="lightbox-nav lightbox-prev" type="button" aria-label="Previous screenshot">‹</button>
+        <button class="lightbox-nav lightbox-next" type="button" aria-label="Next screenshot">›</button>
+        <div class="lightbox-content" role="dialog" aria-modal="true">
+            <button class="lightbox-close" type="button" aria-label="Close">×</button>
+            <img src="" alt="" id="lightbox-image" />
+            <p id="lightbox-caption"></p>
+        </div>
+    </div>
+
+    <script id="json-ld" type="application/ld+json">
+{
+    "@context":  "https://schema.org",
+    "@type":  "WebPage",
+    "@id":  "https://raldes-apps.github.io/ukulele-pouch/en/offline-no-ads/#webpage",
+    "name":  "Offline ukulele app: no ads, no subscriptions | Ukulele Pouch",
+    "url":  "https://raldes-apps.github.io/ukulele-pouch/en/offline-no-ads/",
+    "description":  "Everyday ukulele toolkit: PDF songbooks and tabs, chords, progressions, scales, tuner and metronome - offline, no ads, no subscriptions.",
+    "inLanguage":  "en",
+    "isPartOf":  {
+                     "@type":  "WebSite",
+                     "name":  "Ukulele Pouch",
+                     "url":  "https://raldes-apps.github.io/ukulele-pouch/"
+                 }
+}
+</script>
+    <script src="../../assets/screenshots.js" defer></script>
+    <script src="../../main.js" defer></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

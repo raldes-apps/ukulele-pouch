@@ -1,0 +1,284 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ukulele tuner: High-G / Low-G + auto string detection | Ukulele Pouch</title>
+    <meta name="description"
+        content="Accurate ukulele tuner with auto string detection. Supports High-G and Low-G, with optional manual string selection - offline." />
+    <meta name="theme-color" content="#F8F1E3" id="meta-theme-color" />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="canonical" href="https://raldes-apps.github.io/ukulele-pouch/en/ukulele-tuner/" />
+    <link rel="icon" href="../../assets/icon.png" id="favicon" />
+
+    <link rel="alternate" href="https://raldes-apps.github.io/ukulele-pouch/cs/ukulele-tuner/" hreflang="cs" />
+    <link rel="alternate" href="https://raldes-apps.github.io/ukulele-pouch/en/ukulele-tuner/" hreflang="en" />
+    <link rel="alternate" href="https://raldes-apps.github.io/ukulele-pouch/en/ukulele-tuner/" hreflang="x-default" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="cs_CZ" />
+    <meta property="og:title" content="Ukulele tuner: High-G / Low-G + auto string detection | Ukulele Pouch" />
+    <meta property="og:description"
+        content="Accurate ukulele tuner with auto string detection. Supports High-G and Low-G, with optional manual string selection - offline." />
+    <meta property="og:image" content="https://raldes-apps.github.io/ukulele-pouch/assets/feature-graphic-en.png" />
+    <meta property="og:image:width" content="1536" />
+    <meta property="og:image:height" content="1024" />
+    <meta property="og:image:alt" content="Ukulele Pouch - tuner for High-G and Low-G" />
+    <meta property="og:url" content="https://raldes-apps.github.io/ukulele-pouch/en/ukulele-tuner/" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ukulele tuner: High-G / Low-G + auto string detection | Ukulele Pouch" />
+    <meta name="twitter:description"
+        content="Accurate ukulele tuner with auto string detection. Supports High-G and Low-G, with optional manual string selection - offline." />
+    <meta name="twitter:url" content="https://raldes-apps.github.io/ukulele-pouch/en/ukulele-tuner/" />
+    <meta name="twitter:image" content="https://raldes-apps.github.io/ukulele-pouch/assets/feature-graphic-en.png" />
+    <meta name="twitter:image:alt" content="Ukulele Pouch - tuner for High-G and Low-G" />
+
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <script>
+        (function () {
+            try {
+                const KEY = "ukuleleTheme";
+                const saved = localStorage.getItem(KEY);
+                const theme = saved === "dark" || saved === "light" ? saved : "light";
+                document.documentElement.dataset.theme = theme;
+                document.documentElement.classList.remove("theme-ready");
+            } catch (e) {
+                document.documentElement.dataset.theme = "light";
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="../../style.css" />
+</head>
+
+<body data-static-page="true">
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <img src="../../assets/icon.png" data-src-light="../../assets/icon.png"
+                    data-src-dark="../../assets/icon-dark.png" alt="Ukulele Pouch logo" class="brand-logo" width="64"
+                    height="64" />
+                <div>
+                    <p class="eyebrow">Ukulele Pouch</p>
+                    <p class="tagline">Warm and cozy ukulele toolkit</p>
+                </div>
+            </div>
+            <div class="header-controls">
+                <nav class="lang-switch" aria-label="Language">
+                    <button type="button" class="lang-btn" data-lang="cs" data-lang-url="../../cs/ukulele-tuner/"
+                        aria-pressed="false">
+                        CZ
+                    </button>
+                    <button type="button" class="lang-btn" data-lang="en" data-lang-url="../../en/ukulele-tuner/"
+                        aria-pressed="true">
+                        EN
+                    </button>
+                </nav>
+                <div class="theme-switch" role="group" aria-label="Theme">
+                    <button type="button" class="theme-btn" data-theme="light" aria-pressed="false"
+                        aria-label="Light theme">
+                        <svg class="theme-icon" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
+                            <path
+                                d="M450-810v-110h60v110h-60Zm0 770v-110h60v110h-60Zm360-410v-60h110v60H810Zm-770 0v-60h110v60H40Zm702-250-43-43 66-66 43 43-66 66ZM195-151l-43-43 66-66 43 43-66 66Zm570 0-66-66 43-43 66 66-43 43ZM218-700l-66-66 43-43 66 66-43 43Zm102.5 379.5Q255-386 255-480t65.5-159.5Q386-705 480-705t159.5 65.5Q705-574 705-480t-65.5 159.5Q574-255 480-255t-159.5-65.5ZM597-363q48-48 48-117t-48-117q-48-48-117-48t-117 48q-48 48-48 117t48 117q48 48 117 48t117-48ZM480-480Z" />
+                        </svg>
+                    </button>
+                    <button type="button" class="theme-btn" data-theme="dark" aria-pressed="false"
+                        aria-label="Dark theme">
+                        <svg class="theme-icon" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
+                            <path
+                                d="M614-668 508-774l106-106 106 106-106 106Zm200 120-66-66 66-66 66 66-66 66ZM483-80q-84 0-157.5-32t-128-86.5Q143-253 111-326.5T79-484q0-146 93-257.5T409-880q-18 98 11 192.63 29 94.64 100 165.74 71 71.1 165.5 100.14Q780-392.45 879-410.47q-26 144.2-138 237.34Q629-80 483-80Zm0-60q100 0 182-57t132-145q-90-8-173-41.5T477.5-480Q414-543 381-625.5T340-797q-88 48-144.5 130.5T139-484q0 143.33 100.33 243.67Q339.67-140 483-140Zm-6-340Z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <h1>Ukulele tuner (High-G / Low-G)</h1>
+                    <p class="hero-subtitle">
+                        Ukulele Pouch includes a built-in tuner for standard High-G tuning and Low-G setups. Pluck a
+                        string and the app shows whether you are flat, in tune, or sharp.
+                    </p>
+                    <p class="hero-lead">
+                        Automatic string detection makes tuning fast and natural, and you can always switch to manual
+                        string selection when needed.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="cta-button"
+                            href="https://play.google.com/store/apps/details?id=cz.raldes.ukulelepouch" target="_blank"
+                            rel="noopener">
+                            Get it on Google Play
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <img src="../../assets/qr-google-play.png" data-src-light="../../assets/qr-google-play.png"
+                        data-src-dark="../../assets/qr-google-play-dark.png" alt="QR code to Google Play" class="hero-qr"
+                        width="280" height="280" />
+                    <p class="qr-caption">Scan to open Google Play</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section content-split">
+            <div class="container split-grid">
+                <div class="split-main">
+
+        <section class="section">
+            <div class="container">
+                <h2>Key benefits</h2>
+                <ul>
+                    <li>Supports High-G and Low-G</li>
+                    <li>Automatic string detection</li>
+                    <li>Manual string selection option</li>
+                    <li>Clear tuning feedback</li>
+                    <li>Great for quick tuning before playing</li>
+                    <li>Works offline</li>
+                    <li>Microphone used only for pitch detection</li>
+                </ul>
+            </div>
+        </section>
+
+        
+
+        <section class="section">
+            <div class="container">
+                <h2>Who it is for / when it helps</h2>
+                <ul>
+                    <li>Pretty much everyone, anytime — this section is here mostly for symmetry</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Tips</h2>
+                <ul>
+                    <li>Tune in a quiet room and pluck one string clearly</li>
+                    <li>If you use Low-G, make sure the correct tuning is selected</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section faq" id="faq">
+            <div class="container">
+                <h2>FAQ</h2>
+                <div class="faq-list">
+                    <details class="faq-item">
+                        <summary>Why does the tuner need microphone access?</summary>
+                        <p>Without microphone input the app cannot measure the pitch you play. The mic is used only for
+                            local pitch detection.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Does the tuner work offline?</summary>
+                        <p>Yes. Internet is not required for tuning, only for installing and updating the app.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>What if auto detection picks the wrong string?</summary>
+                        <p>Noise or weak tone can confuse detection. Switch to manual string selection and pluck the string
+                            clearly.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+
+                </div>
+
+                <aside class="split-aside">
+                    <div class="sticky-card">
+                        <img class="feature-shot" src="../../assets/screenshots-phone/en 3.jpg"
+                            data-src-light="../../assets/screenshots-phone/en 3.jpg"
+                            data-src-dark="../../assets/screenshots-phone-dark/en 3.jpg"
+                            alt="Ukulele tuner screenshot in Ukulele Pouch" width="420" height="840" loading="lazy" />
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>More helpful pages</h2>
+                <div class="cards-grid">
+                    <article class="card link-card"><a class="cta-link" href="../pdf-songbook/">PDF songbook and tabs</a></article>
+                    <article class="card link-card"><a class="cta-link" href="../ukulele-chords/">Ukulele chords</a></article>
+                    <article class="card link-card"><a class="cta-link" href="../chord-progressions/">Chord progressions</a></article>
+                    <article class="card link-card"><a class="cta-link" href="../ukulele-scales/">Ukulele scales</a></article>
+                    <article class="card link-card"><a class="cta-link" href="../metronome-tap-tempo/">Metronome and Tap Tempo</a></article>
+                    <article class="card link-card"><a class="cta-link" href="../fretboard-chord-finder/">Fretboard chord identification</a></article>
+                    <article class="card link-card"><a class="cta-link" href="../floating-tools-button/">Floating tools button</a></article>
+                    <article class="card link-card"><a class="cta-link" href="../backup-transfer/">Backup and transfer</a></article>
+                    <article class="card link-card"><a class="cta-link" href="../offline-no-ads/">Offline, no ads</a></article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>© 2026 Ukulele Pouch.</p>
+            <div class="footer-links">
+                <a href="https://play.google.com/store/apps/details?id=cz.raldes.ukulelepouch" target="_blank"
+                    rel="noopener">Google Play</a>
+                <a href="https://albardo.github.io/ukulele-pouch-legal/privacy-policy" target="_blank" rel="noopener">Privacy
+                    policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+        <button class="lightbox-nav lightbox-prev" type="button" aria-label="Previous screenshot">‹</button>
+        <button class="lightbox-nav lightbox-next" type="button" aria-label="Next screenshot">›</button>
+        <div class="lightbox-content" role="dialog" aria-modal="true">
+            <button class="lightbox-close" type="button" aria-label="Close">×</button>
+            <img src="" alt="" id="lightbox-image" />
+            <p id="lightbox-caption"></p>
+        </div>
+    </div>
+
+    <script id="json-ld" type="application/ld+json">
+{
+    "@context":  "https://schema.org",
+    "@type":  "WebPage",
+    "@id":  "https://raldes-apps.github.io/ukulele-pouch/en/ukulele-tuner/#webpage",
+    "name":  "Ukulele tuner: High-G / Low-G + auto string detection | Ukulele Pouch",
+    "url":  "https://raldes-apps.github.io/ukulele-pouch/en/ukulele-tuner/",
+    "description":  "Accurate ukulele tuner with auto string detection. Supports High-G and Low-G, with optional manual string selection - offline.",
+    "inLanguage":  "en",
+    "isPartOf":  {
+                     "@type":  "WebSite",
+                     "name":  "Ukulele Pouch",
+                     "url":  "https://raldes-apps.github.io/ukulele-pouch/"
+                 }
+}
+</script>
+    <script src="../../assets/screenshots.js" defer></script>
+    <script src="../../main.js" defer></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

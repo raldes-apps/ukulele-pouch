@@ -14,6 +14,12 @@ function getRootPath() {
   if (path.includes("/ukulele-pouch/")) {
     return "/ukulele-pouch/";
   }
+  if (/\/(cs|en)\/[^/]+\/index\.html$/.test(path)) {
+    return path.replace(/(cs|en)\/[^/]+\/index\.html$/, "");
+  }
+  if (/\/(cs|en)\/[^/]+\/$/.test(path)) {
+    return path.replace(/(cs|en)\/[^/]+\/$/, "");
+  }
   if (/\/(cs|en)\/index\.html$/.test(path)) {
     return path.replace(/(cs|en)\/index\.html$/, "");
   }
@@ -290,11 +296,23 @@ function setLang(lang) {
 
   const desiredPath = `${ROOT_PATH}${lang}/`;
   if (!window.location.pathname.startsWith(desiredPath)) {
+    try {
+      sessionStorage.setItem("ukuleleScrollY", String(window.scrollY));
+      sessionStorage.setItem("ukuleleScrollPending", "1");
+    } catch (e) {
+      // Ignore storage errors.
+    }
     window.location.href = IS_FILE_PROTOCOL ? `${ROOT_PATH}${lang}/index.html` : desiredPath;
     return;
   }
 
   document.documentElement.lang = lang;
+  const isStaticPage = document.body?.dataset.staticPage === "true";
+  if (isStaticPage) {
+    updateLangButtons(lang);
+    return;
+  }
+
   document.title = i18n[lang].metaTitle;
 
   updateMeta(lang);
@@ -359,6 +377,17 @@ function updateSocialImages(lang) {
   const absGraphic = toAbsoluteUrl(graphic);
   document.getElementById("og-image").setAttribute("content", absGraphic);
   document.getElementById("twitter-image").setAttribute("content", absGraphic);
+}
+
+function fixFileLinks() {
+  if (!IS_FILE_PROTOCOL) return;
+  document.querySelectorAll("a[href]").forEach((link) => {
+    const href = link.getAttribute("href") || "";
+    if (!href || href.startsWith("#")) return;
+    if (/^(https?:|mailto:|tel:)/i.test(href)) return;
+    if (!href.endsWith("/")) return;
+    link.setAttribute("href", `${href}index.html`);
+  });
 }
 
 function applyI18nAttr(element, lang) {
@@ -711,8 +740,41 @@ function updateStructuredData() {
 }
 
 langButtons.forEach((button) => {
-  button.addEventListener("click", () => setLang(button.dataset.lang));
+  button.addEventListener("click", () => {
+    const targetUrl = button.dataset.langUrl;
+    if (targetUrl) {
+      try {
+        sessionStorage.setItem("ukuleleScrollY", String(window.scrollY));
+        sessionStorage.setItem("ukuleleScrollPending", "1");
+      } catch (e) {
+        // Ignore storage errors.
+      }
+      if (IS_FILE_PROTOCOL && targetUrl.endsWith("/")) {
+        window.location.href = `${targetUrl}index.html`;
+        return;
+      }
+      window.location.href = targetUrl;
+      return;
+    }
+    setLang(button.dataset.lang);
+  });
 });
+
+function restoreScrollPosition() {
+  try {
+    if (sessionStorage.getItem("ukuleleScrollPending") !== "1") return;
+    const stored = sessionStorage.getItem("ukuleleScrollY");
+    const value = stored ? Number.parseInt(stored, 10) : 0;
+    sessionStorage.removeItem("ukuleleScrollPending");
+    sessionStorage.removeItem("ukuleleScrollY");
+    if (!Number.isFinite(value)) return;
+    requestAnimationFrame(() => {
+      window.scrollTo(0, value);
+    });
+  } catch (e) {
+    // Ignore storage errors.
+  }
+}
 
 themeButtons.forEach((button) => {
   button.addEventListener("click", () => setTheme(button.dataset.theme));
@@ -774,7 +836,9 @@ document.addEventListener("keydown", (event) => {
   currentLang = detectLanguage();
   setLang(currentLang);
   setCompactMode(COMPACT_SCREENSHOTS);
+  fixFileLinks();
   requestAnimationFrame(() => {
     document.documentElement.classList.add("theme-ready");
   });
+  restoreScrollPosition();
 })();

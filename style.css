@@ -190,7 +190,7 @@ img {
 }
 
 .hero {
-    padding: 56px 0 40px;
+    padding: 6px 0 16px;
 }
 
 .hero-grid {
@@ -241,6 +241,10 @@ img {
     transition: color 160ms ease;
 }
 
+.cards-grid .cta-link {
+    color: var(--color-text);
+}
+
 .hero-badges {
     display: flex;
     flex-wrap: wrap;
@@ -275,11 +279,67 @@ img {
 }
 
 .section {
-    padding: 52px 0;
+    padding: 12px 0;
+}
+
+/* Long-tail pages: content split (text left, screenshot right) */
+.content-split {
+    padding-top: 0;
+}
+
+.split-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 420px;
+    gap: 32px;
+    align-items: start;
+}
+
+.split-main {
+    min-width: 0;
+}
+
+.split-aside {
+    min-width: 0;
+}
+
+.sticky-card {
+    position: sticky;
+    top: 96px;
+    margin-top: 56px;
+    border-radius: 20px;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.feature-shot {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 18px;
+    box-shadow: 0 10px 14px -10px rgba(66, 44, 31, 0.22);
+}
+
+.feature-caption {
+    margin: 12px 0 6px;
+    opacity: 0.85;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 899px) {
+    .split-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .sticky-card {
+        position: static;
+        top: auto;
+    }
 }
 
 .section h2 {
-    margin-bottom: 24px;
+    margin-bottom: 6px;
     font-size: clamp(1.8rem, 1vw + 1.2rem, 2.4rem);
     font-weight: 700;
 }
@@ -295,6 +355,22 @@ img {
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-card);
     transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.card.link-card {
+    padding: 0;
+    display: flex;
+    align-items: stretch;
+}
+
+.card.link-card .cta-link {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    width: 100%;
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 0.95rem;
 }
 
 .card h3 {
@@ -715,6 +791,11 @@ img {
 .cta-link:hover,
 .cta-link:focus-visible {
     color: #a54f2e;
+}
+
+.cards-grid .cta-link:hover,
+.cards-grid .cta-link:focus-visible {
+    color: var(--color-text);
 }
 
 .card:hover,
