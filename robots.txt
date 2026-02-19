@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://raldes-apps.github.io/ukulele-pouch/sitemap.xml
