@@ -42,8 +42,6 @@ function toAbsoluteUrl(path) {
   return `${window.location.origin}${path}`;
 }
 
-
-
 const langButtons = document.querySelectorAll(".lang-btn");
 const themeButtons = document.querySelectorAll(".theme-btn");
 const deviceTabs = document.querySelectorAll(".device-tab");

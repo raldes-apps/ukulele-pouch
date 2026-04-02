@@ -1,5 +1,6 @@
 window.SCREENSHOTS_DATA = [
   { "device": "phone", "lang": "cs", "file": "cz 0.jpg", "caption": "Nahrání a čtení písniček • Filtrování dle kategorie" },
+  { "device": "phone", "lang": "cs", "file": "cz 1-5.jpg", "caption": "Editor tabulatur" },
   { "device": "phone", "lang": "cs", "file": "cz 2.jpg", "caption": "Snadný přehled akordů • Oblíbené | Přehrávání" },
   { "device": "phone", "lang": "cs", "file": "cz 3.jpg", "caption": "Automatická ladička • Pro High i Low G" },
   { "device": "phone", "lang": "cs", "file": "cz 4.jpg", "caption": "Plně nastavitelný metronom" },
@@ -9,6 +10,7 @@ window.SCREENSHOTS_DATA = [
   { "device": "phone", "lang": "cs", "file": "cz 8.jpg", "caption": "Interaktivní hmatník • Snadné určení akordů" },
 
   { "device": "phone", "lang": "en", "file": "en 0.jpg", "caption": "Upload & read songs • Filter by categories" },
+  { "device": "phone", "lang": "en", "file": "en 1-5.jpg", "caption": "Tab editor" },
   { "device": "phone", "lang": "en", "file": "en 2.jpg", "caption": "Easy chord overview • Favorites & Playback" },
   { "device": "phone", "lang": "en", "file": "en 3.jpg", "caption": "Automatic tuner • For High & Low G" },
   { "device": "phone", "lang": "en", "file": "en 4.jpg", "caption": "Fully adjustable metronome" },
@@ -18,6 +20,7 @@ window.SCREENSHOTS_DATA = [
   { "device": "phone", "lang": "en", "file": "en 8.jpg", "caption": "Interactive fretboard • Easy chord recognition" },
 
   { "device": "tablet", "lang": "cs", "file": "cz 0.png", "caption": "Nahrání a čtení písniček • Filtrování dle kategorie" },
+  { "device": "tablet", "lang": "cs", "file": "cz 1-5.png", "caption": "Editor tabulatur" },
   { "device": "tablet", "lang": "cs", "file": "cz 1.png", "caption": "Pohodlné čtení • Noční režim" },
   { "device": "tablet", "lang": "cs", "file": "cz 2.png", "caption": "Snadný přehled akordů • Oblíbené | Přehrávání" },
   { "device": "tablet", "lang": "cs", "file": "cz 3.png", "caption": "Automatická ladička • Pro High i Low G" },
@@ -28,6 +31,7 @@ window.SCREENSHOTS_DATA = [
   { "device": "tablet", "lang": "cs", "file": "cz 8.png", "caption": "Interaktivní hmatník • Snadné určení akordů" },
 
   { "device": "tablet", "lang": "en", "file": "en 0.png", "caption": "Upload & read songs • Filter by categories" },
+  { "device": "tablet", "lang": "en", "file": "en 1-5.png", "caption": "Tab editor" },
   { "device": "tablet", "lang": "en", "file": "en 1.png", "caption": "Comfortable reading • Night mode" },
   { "device": "tablet", "lang": "en", "file": "en 2.png", "caption": "Easy chord overview • Favorites & Playback" },
   { "device": "tablet", "lang": "en", "file": "en 3.png", "caption": "Automatic tuner • For High & Low G" },
