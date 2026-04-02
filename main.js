@@ -163,6 +163,10 @@ function setLang(lang) {
   const isStaticPage = document.body?.dataset.staticPage === "true";
   if (isStaticPage) {
     updateLangButtons(lang);
+    if (screenshotsData.length) {
+      renderScreenshots();
+      updateStructuredData();
+    }
     return;
   }
 
